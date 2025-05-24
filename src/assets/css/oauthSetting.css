@@ -1,0 +1,77 @@
+.webo-admin-wrap {
+  max-width: 100%;
+  background: #fff;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.webo-admin-wrap h1 {
+  color: #1877f2;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+.webo-admin-wrap form {
+    border: 1px solid lightblue;
+    max-width: 480px;
+    padding: 0 20px;
+    border-radius: 12px;
+}
+
+.webo-admin-wrap table.form-table {
+  width: 100%;
+}
+
+.webo-admin-wrap table.form-table th {
+  padding-bottom: 8px;
+}
+
+.webo-admin-wrap table.form-table th label {
+  font-weight: 600;
+  color: #050505;
+}
+
+.webo-admin-wrap table.form-table input[type="text"],
+.webo-admin-wrap table.form-table input[type="password"] {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 16px;
+  border: 1.5px solid #ccd0d5;
+  border-radius: 6px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.webo-admin-wrap table.form-table input[type="text"]:focus,
+.webo-admin-wrap table.form-table input[type="password"]:focus {
+  border-color: #1877f2;
+  box-shadow: 0 0 8px #1877f2;
+}
+
+.webo-admin-wrap table.form-table p {
+  font-size: 12px;
+  color: #606770;
+  margin-top: 6px;
+}
+
+.webo-admin-wrap input#submit {
+  width: 100%;
+  background-color: #1877f2;
+  border-color: #1877f2;
+  color: #fff;
+  font-weight: 600;
+  padding: 10px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-shadow: none;
+  box-shadow: none;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.webo-admin-wrap input#submit:hover {
+  background-color: #165eab;
+  border-color: #165eab;
+}

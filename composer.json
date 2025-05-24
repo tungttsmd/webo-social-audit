@@ -1,0 +1,20 @@
+{
+  "name": "vendor/composer",
+  "description": "Thu muc chua thu vien cai tu composer",
+  "type": "library",
+  "require": {
+    "league/oauth2-facebook": "^2.2"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Vendor\\Composer\\": "src/",
+      "Service\\": "src/includes/app/Service/",
+      "Public\\": "public/",
+      "Model\\": "src/includes/app/Model/",
+      "Controller\\": "src/includes/app/Controller/",
+      "Helper\\": "src/includes/app/Helper/"
+    }
+  },
+  "minimum-stability": "stable"
+}

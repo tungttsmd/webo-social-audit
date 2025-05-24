@@ -1,0 +1,22 @@
+.webo-fb-login {
+  display: inline-block;
+  background-color: #1877f2;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.webo-fb-login:hover {
+  background-color: #145dbf;
+  color: ghostwhite;
+}
+
+.webo-fb-login i {
+  margin-right: 8px;
+  vertical-align: middle;
+}
