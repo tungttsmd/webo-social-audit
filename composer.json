@@ -13,8 +13,12 @@
       "Public\\": "public/",
       "Model\\": "src/includes/app/Model/",
       "Controller\\": "src/includes/app/Controller/",
-      "Helper\\": "src/includes/app/Helper/"
-    }
+      "Helper\\": "src/includes/app/Helper/",
+      "Action\\": "src/includes/app/Action/"
+    },
+    "files": [
+      "config.php"
+    ]
   },
   "minimum-stability": "stable"
 }

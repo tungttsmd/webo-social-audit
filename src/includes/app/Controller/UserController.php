@@ -2,72 +2,32 @@
 
 namespace Controller;
 
-use Helper\BetterLib;
-use Model\UserCallback;
+use Action\UserAction;
+use Model\Auth\OAuthUser;
 use Service\BaseService;
-use Model\FacebookOAuthService;
 
 class UserController
 {
     use BaseService;
+
+    private $oAuthUser;
+    public function __construct()
+    {
+        $this->oAuthUser = OAuthUser::make();
+        $this->sessionStart();
+    }
     public function user_login()
     {
-        if (!session_id()) {
-            session_start();
-        }
-
         if (!empty($_SESSION['fb_access_token'])) {
-            return UserCallback::make()->callbackAfterLogin($_SESSION['fb_access_token']);
+            return UserAction::make()->autoLoginAction($_SESSION['fb_access_token']);
+        } elseif (isset($_GET['webo_oauth'], $_GET['code']) && $this->oAuthUser->csrfState($_GET['state'])) {
+            return UserAction::make()->firstAuthLoginAction($_GET['code']);
         }
-
-        if (isset($_GET['webo_oauth']) && isset($_GET['code'])) {
-            return $this->user_login_callback();
-        }
-
-        $scopes = [
-            'email',
-            'public_profile',
-            'user_friends',
-            'user_birthday',
-            'user_gender',
-            'user_location',
-            'user_hometown',
-            'user_link',
-            'user_photos',
-            'user_posts',
-            'user_videos',
-            'user_likes',
-            'user_age_range',
-        ];
-
-        $oauthService = new FacebookOAuthService(site_url('/oauth-user?webo_oauth=1'), $scopes);
-        $authUrl = $oauthService->getAuthorizationUrl();
-
-        ob_start();
-        $this->render('facebookLoginButton', ['authUrl' => $authUrl]);
-        return ob_get_clean();
+        $msg = UserAction::make()->notLoginYetAction();
+        return UserAction::make()->loginButtonDraw($msg ?? '');
     }
-
-    public function user_login_callback()
+    public function user_logout()
     {
-        $oauthService = new FacebookOAuthService(site_url('/oauth-user?webo_oauth=1'), []);
-
-        if (!isset($_GET['state']) || !$oauthService->validateState($_GET['state'])) {
-            return 'Trạng thái xác thực không hợp lệ.';
-        }
-
-        if (!isset($_GET['code'])) {
-            return 'Không có mã xác thực.';
-        }
-
-        $tokenResult = $oauthService->getAccessToken($_GET['code']);
-        if ($tokenResult['status']) {
-            $_SESSION['fb_access_token'] = $tokenResult['token'];
-            return UserCallback::make()->callbackAfterLogin($tokenResult['token']);
-        }
-        return $tokenResult['msg'];
+        return UserAction::make()->logoutAction();
     }
-
-    // Tương tự page login, gọi các service tương ứng.
-   
 }

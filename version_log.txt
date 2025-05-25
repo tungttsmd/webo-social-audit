@@ -1,0 +1,28 @@
+Phiên bản v1.2
+- Đây là bản thử nghiệm App Facebook (chưa public cho nhiều người dùng, chỉ Tester, Admin, Dev có thể tham gia)
+
+- Có thể dùng App Facebook để lấy profile người dùng (chỉ có quyền xem)
+    + Facebook hạn chế việc chỉnh sửa trên user nên không có quyền Chỉnh sửa, Xoá, Cập nhật bất kì
+
+- Có thể dùng Page kết nối App Facebook để Thao tác với bài Post
+    + Xem/Đăng/Sửa/Xoá bài viết
+    + Xem/Trả lời/Ẩn/Xoá bình luận của một bài viết cụ thể
+    + Like/unlike bài viết
+    + Thay đổi Setting (Về chúng tôi, thông tin page...) (chưa kiểm tra)
+- Có thể dùng Page kết nối App Facebook để xem Insight
+    + Tổng reaction toàn page
+    + Reaction của post cụ thể
+    + Nhân khẩu học của người followers
+    + Tổng số lần xuất hiện của bài post trước người dùng
+    + Tổng số tương tác của 1 bài viết
+    + Sự xuất hiện của các bài post của page trước người dùng
+    + Tổng số lần xuất hiện của page trước người dùng
+    + Lượt follow, tương tác Trang
+    + Số lượng click CTA
+    + Đo lường thông số tổng hợp các post video của page
+    + Tổng lượt đã xem trang bởi người đăng nhập và đăng xuất
+    + Đo lường thông số của post có video
+    + Số lượng người like, share, comment... bài viết
+
+Phiên bản v1.1
+- Có khả năng kết nối OAuth2 tới Facebook User và Page thông qua App Facebook

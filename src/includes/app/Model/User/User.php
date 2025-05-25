@@ -1,6 +1,6 @@
 <?php
 
-namespace Model;
+namespace Model\User;
 
 use GuzzleHttp\Client as GuzzleClient;
 use Service\BaseService;
@@ -10,16 +10,10 @@ class User
     use BaseService;
 
     private $client;
-    private $fieldsQueryRequest;
+    private $scopes;
     public function __construct()
     {
-        // Tắt xác minh SSL để chạy DEV
-        $this->client = new GuzzleClient([
-            'verify' => false, // ⚠️ Tắt xác minh SSL chỉ dùng trong môi trường DEV
-        ]);
-
-        // Custom query trường dữ liệu cho readProfile
-        $this->fieldsQueryRequest = implode(',', [
+        $this->scopes = implode(',', [
             'id',                   // Yêu cầu GrapQL trả id fb user
             'name',                 // Yêu cầu GrapQL trả Họ tên
             'email',                // Yêu cầu GrapQL trả email
@@ -32,23 +26,20 @@ class User
             'friends',              // Yêu cầu GrapQL trả data friends
             'picture.type(large)',  // Yêu cầu GrapQL trả src avatar
         ]);
+        $this->client = new GuzzleClient(['verify' => false]);
     }
-
-    public function readProfile($token)
+    public function getUserProfile($token)
     {
         try {
-            // Bước 1: Truy vấn theo fields (chuẩn FB)
             $query = $this->client->get('https://graph.facebook.com/me', [
                 'query' => [
-                    'fields' =>  $this->fieldsQueryRequest,
+                    'fields' =>  $this->scopes,
                     'access_token' => $token
                 ]
             ]);
 
-            // Bước 2: Giải mã json thành dữ liệu dạng array
             $response = json_decode($query->getBody()->getContents(), true);
 
-            // Bước 3: Trả kết quả
             return [
                 'Facebook ID: ' => $response['id'] ?? "Không tìm thấy",
                 'Họ tên: ' => $response['name'] ?? "Không tìm thấy",
@@ -68,18 +59,23 @@ class User
             return ['error' => 'Lỗi Facebook API: ' . $responseBody];
         }
     }
-
-    // public function createPost($token, string $postContent)
-    // {
-    //     $response = $this->client->post('https://graph.facebook.com/me/feed', [
-    //         'form_params' => [
-    //             'message' => $postContent,
-    //             'access_token' => $token
-    //         ]
-    //     ]);
-    //     $data = json_decode($response->getBody()->getContents(), true);
-
-    //     return $data['id']; // ID bài đăng mới tạo
-
-    // }
+    public function fetchId($userToken)
+    {
+        $query = $this->client->get('https://graph.facebook.com/me', [
+            'query' => [
+                'fields' =>  $this->scopes,
+                'access_token' => $userToken
+            ]
+        ]);
+        return json_decode($query->getBody()->getContents(), true);
+    }
+    public function getPageManageList($userToken)
+    {
+        $response = $this->client->get("https://graph.facebook.com/v19.0/me/accounts", [
+            'query' => [
+                'access_token' => $userToken
+            ]
+        ]);
+        return json_decode($response->getBody(), true);
+    }
 }
