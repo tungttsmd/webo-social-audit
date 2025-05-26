@@ -21,12 +21,12 @@ class PageSetting extends Page
         return json_decode($response->getBody(), true);
     }
 
-    public function updateSetting($page_id, $accessToken)
+    public function updateSetting($page_id, $accessToken, array $settingList)
     {
+        /* $settingList nên là mảng có key => value (field => value) */
+        $formParams = array_merge(['access_token' => $accessToken], $settingList);
         $response = $this->client->post("https://graph.facebook.com/v19.0/{$page_id}", [
-            'form_params' => [
-                'access_token' => $accessToken,
-            ]
+            'form_params' => $formParams
         ]);
         return json_decode($response->getBody(), true); // Trả success => true
     }

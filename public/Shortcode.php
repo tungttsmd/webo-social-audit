@@ -27,5 +27,9 @@ class Shortcode
             SHORTCODE_OAUTH_PAGE_LOGOUT,
             [PageController::make(), 'page_logout']
         );
+        add_shortcode(
+            'webo_page_view_insight',
+            [PageController::make(), 'pageViewInsight']
+        );
     }
 }

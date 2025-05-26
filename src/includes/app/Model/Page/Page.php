@@ -2,6 +2,7 @@
 
 namespace Model\Page;
 
+use Exception;
 use GuzzleHttp\Client as GuzzleClient;
 use Service\BaseService;
 
@@ -67,7 +68,23 @@ class Page
 
         return json_decode($response->getBody(), true);
     }
-    public function ddToken($accessToken) {
+    public function ddToken($accessToken)
+    {
         return $accessToken;
+    }
+    public function getPageId($userToken, int $index = 0)
+    {
+        try {
+            $response = Page::make()->fetchId($userToken);
+            /* $index là số thứ tự page mà user tạo ra userToken quản lý */
+            $pageAccessToken = $response['data'][$index]['access_token'];
+            $pageId = $response['data'][$index]['id'];
+            return $this::oopstd([
+                'page_access_token' => $pageAccessToken,
+                'page_id' => $pageId
+            ]);
+        } catch (Exception $e) {
+            return "Lỗi khi lấy page_id: " . $e->getMessage();
+        }
     }
 }

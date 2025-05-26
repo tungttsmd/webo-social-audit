@@ -10,7 +10,7 @@ class PageInsight extends Page
     {
         parent::__construct();
     }
-    public function getInsights($ID, $accessToken, array $metrics = [], $period = 'day', $since = null, $until = null)
+    public function getInsight($ID, $accessToken, array $metrics = [], $period = 'day', $since = null, $until = null)
     {
         // === Lưu ý sử dụng getInsights ===
         // Nếu ID là của page: trả về metrics của page.
