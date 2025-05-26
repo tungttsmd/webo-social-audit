@@ -1,3 +1,20 @@
+Phiên bản v1.3
+- Cập nhập thêm chức năng call API thay đổi setting page:
++ Giới thiệu
++ Chi tiết page
++ website chính của page
++ Số điện thoại của page
++ email
++ Địa chỉ có định dạng (có map)
++ giờ đóng/mở cửa, ngày làm việc
++ trạng thái đóng cửa vĩnh viễn true/false
++ các trạng thái hoạt động tạm thời
++ Thông tin tổng quan (Chỉ hiển thị khi là Thông tin doanh nghiệp)
++ Tổng quan công ty (Chỉ hiển thị khi là Thông tin doanh nghiệp)
++ Tiểu sử (Chỉ hiển thị khi là Thông tin doanh nghiệp)
++ Sứ mệnh (Chỉ hiển thị khi là Thông tin doanh nghiệp)
++ Ảnh bìa
+
 Phiên bản v1.2
 - Đây là bản thử nghiệm App Facebook (chưa public cho nhiều người dùng, chỉ Tester, Admin, Dev có thể tham gia)
 

@@ -57,4 +57,17 @@ class Page
         ]);
         return json_decode($response->getBody(), true);
     }
+    public function getUserRoles($pageId, $accessToken)
+    {
+        $response = $this->client->get("https://graph.facebook.com/v19.0/{$pageId}/roles", [
+            'query' => [
+                'access_token' => $accessToken
+            ]
+        ]);
+
+        return json_decode($response->getBody(), true);
+    }
+    public function ddToken($accessToken) {
+        return $accessToken;
+    }
 }

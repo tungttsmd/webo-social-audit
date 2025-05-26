@@ -69,7 +69,7 @@ class User
         ]);
         return json_decode($query->getBody()->getContents(), true);
     }
-    public function getPageManageList($userToken)
+    public function getPageList($userToken)
     {
         $response = $this->client->get("https://graph.facebook.com/v19.0/me/accounts", [
             'query' => [

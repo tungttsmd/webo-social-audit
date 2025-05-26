@@ -4,6 +4,7 @@ namespace Action;
 
 use Model\Auth\OAuthPage;
 use Model\Page\Page;
+use Model\Page\PageSetting;
 use Service\BaseService;
 
 class PageAction
@@ -32,8 +33,9 @@ class PageAction
             'access_token' => $res->access_token,       // Dùng để thao tác API (access_token)
         ]);
 
+        /* Test Chức năng ở đây */
         ob_start();
-        var_dump(Page::make()->getPageProfile($data->page_id, $data->access_token));
+        var_dump(PageSetting::make()->viewSetting($data->page_id, $data->access_token));
         return ob_get_clean();
     }
     public function firstAuthLoginAction($codeGetQueryString)
